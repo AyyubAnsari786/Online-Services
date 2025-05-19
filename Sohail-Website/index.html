@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Images/Logo.jpg" type="image/jpeg">
+    <title>Citizen Online Center - Your One-Stop Solution for Government Services</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2980b9;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #3b6c9c;
+            --success: #27ae60;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 100px;
+            background:local(url('Images/background.webp')) no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            color: var(--white);
+            max-width: 600px;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(41, 128, 185, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-icon i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .service-card p {
+            color: #777;
+            margin-bottom: 1.5rem;
+        }
+        
+        .learn-more {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .learn-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .learn-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .feature i {
+            color: var(--success);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 25%;
+            padding: 0 15px;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .step-number::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid var(--secondary);
+            border-right: 2px solid var(--secondary);
+            transform: rotate(45deg);
+            display: none;
+        }
+        
+        .step:last-child .step-number::after {
+            display: none;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .step p {
+            color: #777;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .testimonials .section-title h2 {
+            color: var(--white);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-details p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .contact-text p {
+            color: #777;
+        }
+        
+        .social-links {
+            display: flex;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            color: var(--primary);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background-color: var(--primary);
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-service {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .footer-service i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                margin-bottom: 2rem;
+            }
+            
+            .step {
+                width: 50%;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .step {
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-id-card"></i> Citizen Online Center
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your One-Stop Solution for All Government Services</h1>
+                <p>From Aadhaar to PAN Card, Ration Card to Railway Tickets - we handle all your documentation needs efficiently, saving you time and hassle.</p>
+                <a href="#services" class="btn">Our Services</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Aadhaar Services</h3>
+                    <p>Complete Aadhaar solutions including new applications, updates, corrections, and biometric enrollments.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>PAN Card Services</h3>
+                    <p>Apply for new PAN card, corrections, updates, and linking with other services like Aadhaar.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Ration Card</h3>
+                    <p>Assistance with new ration card applications, modifications, and renewals for all categories.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <h3>Railway Tickets</h3>
+                    <p>Book train tickets, check PNR status, and get assistance with cancellations and refunds.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Property Registration</h3>
+                    <p>Guidance and assistance with property documentation, registration, and verification.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3>Passport Services</h3>
+                    <p>Assistance with passport applications, renewals, and tracking application status.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <h3>Voter ID</h3>
+                    <p>New voter ID applications, corrections, duplicates, and address changes.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                    <h3>Xerox & Printing</h3>
+                    <p>High-quality photocopying, color printing, and document scanning services.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="Images/Citizen Shop.jpg" alt="About Citizen Online Services">
+                </div>
+                <div class="about-text">
+                    <h2>Why Choose Citizen Online Center?</h2>
+                    <p>At Citizen Online Center, we understand the challenges citizens face when dealing with government documentation and official processes. Our mission is to simplify these procedures and provide efficient, reliable services.</p>
+                    <p>With years of experience and a dedicated team of professionals, we ensure that your documentation needs are met with accuracy and precision.</p>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Experienced and trained staff for all government services</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>End-to-end service from application to delivery</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Time-saving with quick processing and minimal visits</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Transparent process with regular status updates</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Affordable rates with no hidden charges</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Simple Process</h2>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Visit or Call</h3>
+                    <p>Visit our center or call us to discuss your requirements and get information.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Document Submission</h3>
+                    <p>Submit the required documents as per the service guidelines.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Processing</h3>
+                    <p>We process your application through the official channels.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Delivery</h3>
+                    <p>Collect your documents or receive them at your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>I was struggling with my Aadhaar card correction for months until I found Citizen Online Center. They made the process so simple and got it done within a week!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/Images/Ansari.jpeg" alt="Ayyub Ansari K">
+                        </div>
+                        <div class="author-details">
+                            <h4>Ayyub Ansari K</h4>
+                            <p>Aadhaar Card Service</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The staff at Citizen Online Center is very knowledgeable and helpful. They guided me through the entire PAN card application process with patience.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/Images/Lady.webp" alt="Priya Patel">
+                        </div>
+                        <div class="author-details">
+                            <h4>Priya Patel</h4>
+                            <p>PAN Card Service</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Booking railway tickets has never been easier! Their service is prompt and they even helped me find the best routes and discounts available.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/Images/Taher-Attar.jpg" alt="Attar Taher Basha">
+                        </div>
+                        <div class="author-details">
+                            <h4>A Taher Basha</h4>
+                            <p>Railway Ticket Booking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-text">
+                                <h4>Visit Us</h4>
+                                <p>Shop-03, Achari Complex, Yemmiganur Turning Road Adoni, Andhra Pradesh - 518301</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="contact-text">
+                                <h4>Call Us</h4>
+                                <p>+91 95502 84626</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-text">
+                                <h4>Email Us</h4>
+                                <p>citizenonline7035@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="contact-text">
+                                <h4>Opening Hours</h4>
+                                <p>Monday - Saturday: 9:30 AM - 8:00 PM</p>
+                                <p>Sunday: Halfday</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="aadhaar">Aadhaar Services</option>
+                                <option value="pan">PAN Card Services</option>
+                                <option value="ration">Ration Card</option>
+                                <option value="railway">Railway Tickets</option>
+                                <option value="property">Property Registration</option>
+                                <option value="passport">Passport Services</option>
+                                <option value="voter">Voter ID</option>
+                                <option value="xerox">Xerox & Printing</option>
+                                <option value="other">Other Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Citizen Online Center is your trusted partner for all government-related documentation and services. With years of experience, we aim to simplify bureaucratic processes for everyone.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Popular Services</h3>
+                    <div class="footer-service">
+                        <i class="fas fa-fingerprint"></i>
+                        <span>Aadhaar Services</span>
+                    </div>
+                    <div class="footer-service">
+                        <i class="fas fa-id-card"></i>
+                        <span>PAN Card Services</span>
+                    </div>
+                    <div class="footer-service">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Ration Card</span>
+                    </div>
+                    <div class="footer-service">
+                        <i class="fas fa-train"></i>
+                        <span>Railway Tickets</span>
+                    </div>
+                    <div class="footer-service">
+                        <i class="fas fa-passport"></i>
+                        <span>Passport Services</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates on new services and government schemes.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Citizen Online Center. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <a href="#" class="scroll-to-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Scroll to Top Button
+        const scrollBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollBtn.classList.add('active');
+            } else {
+                scrollBtn.classList.remove('active');
+            }
+        });
+        
+        scrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth < 768) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Service Cards Animation
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        serviceCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Form Validation
+        const contactForm = document.querySelector('.contact-form form');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Basic form validation
+                const formInputs = contactForm.querySelectorAll('input, textarea, select');
+                let isValid = true;
+                
+                formInputs.forEach(input => {
+                    if (input.hasAttribute('required') && !input.value.trim()) {
+                        input.style.borderColor = 'red';
+                        isValid = false;
+                    } else {
+                        input.style.borderColor = '#ddd';
+                    }
+                });
+                
+                if (isValid) {
+                    // Form submission logic would go here
+                    alert('Thank you for your message! We will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
